@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AlertCircle, Eye, EyeOff, Lock, Mail } from 'lucide-react';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 
 const Login = () => {
@@ -33,12 +34,14 @@ const Login = () => {
       }
 
       setSuccess('Login successful! Redirecting...');
+      toast.success("Login successful")
       setTimeout(() => {
         window.location.href = '/dashboard';
       }, 1500);
     } catch (err) {
       const errorMessage = err.response?.data?.message || 'Login failed. Please try again.';
       setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
